@@ -36,7 +36,11 @@ public class Voto {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nome, punti);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + punti;
+		return result;
 	}
 
 	@Override
@@ -48,8 +52,17 @@ public class Voto {
 		if (getClass() != obj.getClass())
 			return false;
 		Voto other = (Voto) obj;
-		return Objects.equals(nome, other.nome) && punti == other.punti;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (punti != other.punti)
+			return false;
+		return true;
 	}
+
+
 	
 	
 }
