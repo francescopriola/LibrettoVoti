@@ -86,6 +86,14 @@ public class Libretto {
 		return nuovo;
 	}
 	
+	public void cancellaVotiMinori(int punti) {
+		for(Voto v : voti) {
+			int voto = v.getPunti();
+			if(voto <= punti)
+				voti.remove(v);
+		}
+	}
+	
 	public String toString() {
 		return this.voti.toString();
 	}
