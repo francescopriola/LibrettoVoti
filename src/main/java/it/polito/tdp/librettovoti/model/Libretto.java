@@ -5,14 +5,21 @@ import java.util.List;
 
 public class Libretto {
 
+	//Questa classe è il MODEL del nostro controller
 	private List<Voto> voti;
 	
 	public Libretto() {
 		this.voti = new ArrayList<Voto>();
 	}
 	
-	public void add(Voto v) {
-		this.voti.add(v);
+	public boolean add(Voto v) {
+		if(!isConflitto(v) && !isDuplicato(v)) {
+			this.voti.add(v);
+			return true;
+			}
+		else {
+			return false;
+		}
 	}
 	
 	public Libretto filtraPunti(int punti) {
@@ -52,6 +59,31 @@ public class Libretto {
 		if(punti != null && punti != v.getPunti())
 			return true;
 		return false;
+	}
+	
+	public List<Voto> getVoti(){
+		return this.voti;
+	}
+	
+	public Libretto votiMigliorati() {
+		Libretto nuovo = new Libretto();
+		
+		for(Voto v : this.voti)	{
+			int punti = v.getPunti();
+			if(punti >= 24)
+				punti += 2;
+			else
+				punti++;
+			if(punti > 30)
+				punti = 30;
+			
+			//v.setPunti(punti);
+			//nuovo.add(v);
+			
+			nuovo.add(new Voto(v.getNome(), punti));
+		}
+		
+		return nuovo;
 	}
 	
 	public String toString() {
