@@ -89,7 +89,7 @@ public class Libretto {
 	public void cancellaVotiMinori(int punti) {
 		for(Voto v : voti) {
 			int voto = v.getPunti();
-			if(voto <= punti)
+			if(voto < punti)
 				voti.remove(v);
 		}
 	}
