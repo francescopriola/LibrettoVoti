@@ -53,13 +53,6 @@ public class FXMLController {
     	
     	//3. Visualizzazione/Aggiornamento del risultato
     	if(ok == true) {
-    		List<Voto> voti = model.getVoti();
-    		txtVoti.clear();
-    		txtVoti.appendText("Hai superato " + voti.size() + " esami.\n");
-    		for(Voto v : voti) {
-    			txtVoti.appendText(v.toString()+"\n");
-    		}
-    	
     		txtNome.clear();
     		cmbPunti.setValue(null);
     		txtStatus.setText("");
@@ -71,6 +64,13 @@ public class FXMLController {
     
     public void setModel(Libretto model) {	//Metodo dell'oggetto Controller
     	this.model = model;
+    	
+    	List<Voto> voti = model.getVoti();
+		txtVoti.clear();
+		txtVoti.appendText("Hai superato " + voti.size() + " esami.\n");
+		for(Voto v : voti) {
+			txtVoti.appendText(v.toString()+"\n");
+		}
     }
 
     @FXML
@@ -84,7 +84,6 @@ public class FXMLController {
         for(int p = 18; p <= 30; p++) {
         	cmbPunti.getItems().add(p);
         }
-        
     }
 
 }
