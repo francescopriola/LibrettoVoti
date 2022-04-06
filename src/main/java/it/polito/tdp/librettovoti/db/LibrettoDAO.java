@@ -1,6 +1,7 @@
 package it.polito.tdp.librettovoti.db;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 import it.polito.tdp.librettovoti.model.*;
 
@@ -44,7 +45,8 @@ public class LibrettoDAO {
 			while(res.next()) {
 				String nome = res.getString("nome");
 				int punti = res.getInt("punti");
-				result.add(new Voto(nome, punti));
+				LocalDate data = res.getDate("data").toLocalDate();
+				result.add(new Voto(nome, punti, data));
 			}
 			st.close();
 			conn.close();
